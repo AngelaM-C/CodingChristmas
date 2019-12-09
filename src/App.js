@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Navbar from './components/NavBar.js';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import GlobalStyle from  './styles/GlobalStyles.js';
+
+class App extends Component {
+  state = {
+    navbarOpen: false
+  }
+
+  handleNavbar = () => {
+    this.setState({ navbarOpen: !this.state.navbarOpen });
+  }
+
+  render() {
+
+    return (
+      <>
+        <AppWrapper>
+          <Navbar 
+            navbarState={this.state.navbarOpen} 
+            handleNavbar={this.handleNavbar}
+            />
+          <GlobalStyle />
+        </AppWrapper>
+      </>
+    )
+  }
 }
 
 export default App;
+
+const AppWrapper = styled.div`
+height: 100%;
+`;
